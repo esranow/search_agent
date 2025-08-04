@@ -1,18 +1,17 @@
 version: "3.9"
-
 services:
-  redis:
-    image: redis:7
-    container_name: redis_memory
-    ports:
-      - "6379:6379"
-
-  fastapi_app:
+  app:
     build: .
-    container_name: ai_research_agent
     ports:
       - "8000:8000"
+    environment:
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+      - TAVILY_API_KEY=${TAVILY_API_KEY}
+      - REDIS_URL=redis://redis:6379
     depends_on:
       - redis
-    env_file:
-      - .env
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
