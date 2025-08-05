@@ -60,7 +60,24 @@ tools = [
 ]
 
 # FastAPI app
-app = FastAPI(title="SageSync", description="Your intelligent assistant for deep research and personalized reporting.")
+app = FastAPI(
+    title="SageSync",
+    description="""
+SageSync is your intelligent research agent—designed not just to search, but to **understand, retain, and report**.
+
+Unlike typical AI tools like Perplexity that only respond in the moment, SageSync is built for **long-term context**, **personalized memory**, and **multi-file RAG-based research**. Here’s what sets it apart:
+
+- 🔍 **Context-Aware Search**: Go beyond Q&A—SageSync connects the dots across past queries, uploaded documents, and live questions.
+- 🧠 **Personalized Memory**: It remembers what you’ve explored in the past to tailor better, deeper insights in future sessions.
+- 📂 **Multimodal RAG Support**: Upload PDFs, text files, and more—SageSync grounds its answers in your actual content, not just the web.
+- 📊 **Auto-Generated Research Reports**: At any point, generate a full research summary with references, highlights, and session insights.
+- 🧩 **Session Intelligence**: Every session is more than chat—it’s a growing knowledge graph around your research journey.
+
+Think of it as your **research brain extension**, not just another AI assistant.
+
+"""
+)
+
 
 class QueryRequest(BaseModel):
     session_id: str
@@ -161,3 +178,4 @@ async def generate_report(request: QueryRequest):
         import traceback
         traceback.print_exc()
         return PlainTextResponse(str(e), status_code=500)
+
